@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block Content %}
+<section class="m-4">
+    <section class="">
+        <div class="row">
+            <img src="{{user.img_url}}" alt="">
+            <div class="col d-flex align-self-stretch">
+                <div class="align-self-center">
+                <h1>{{user.full_name()}}</h1>
+                </div>
+                <div class="d-inline align-self-end justify-content-start">
+                    <form action="/users/{{user.id}}/edit">
+                        <button class="btn btn-primary">Edit</button>
+                    </form>
+                    <form action="/users/{{user.id}}/delete">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+{% endblock %}
