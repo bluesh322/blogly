@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block Content %}
+<section class="m-3">
+    <h1>Create a tag</h1>
+
+    <form action="/tags/new" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6 col-lg-3">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" placeholder="Enter a name for the tag" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 col-lg-3 d-flex justify-content-end">
+                <button class="btn btn-outline-info mr-2" name="cancel" value="cancel" formnovalidate>Cancel</button>
+                <button class="btn btn-success" name="add" value="add">Add</button>
+            </div>
+        </div>
+    </form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block Content %}
+<section class="m-4">
+    <section class="post">
+        <div class="row">
+            <h1>{{post.title}}</h1>
+        </div>
+        <div class="row">
+
+            <div class="">
+                <p>{{post.content}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <p class="font-italic">By {{post.user.full_name()}} on
+                {{post.created_at.strftime("%A, %B %d %Y, %I:%M%p")}}
+            </p>
+        </div>
+        {% if post.tags %}
+        <div class="row align-items-center">
+            <div class="">
+                <h4 class="font-weight-bold">Tags: </h5>
+            </div>
+            <div class="ml-1">
+                {% for tag in post.tags %}
+                <a href="/tags/{{tag.id}}" class="badge badge-primary">{{tag.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="row d-flex d-inline">
+            <form action="/users/{{post.user.id}}">
+                <button class="btn btn-outline-info mr-1">Go back</button>
+            </form>
+            <form action="/posts/{{post.id}}/edit">
+                <button class="btn btn-primary mx-1">Edit</button>
+            </form>
+            <form action="/posts/{{post.id}}/delete">
+                <button class="btn btn-danger mx-1">Delete</button>
+            </form>
+        </div>
+    </section>
+</section>
+
+{% endblock %}

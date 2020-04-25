@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block Content %}
+    <div class="row align-items-center">
+        <div class="col-lg-3">
+            <h1>Blogly Recent Posts</h1>
+        </div>
+        <div class="col-lg-3">
+            <h4><a href="/users">List of Users and their Posts</a></h4>
+        </div>
+        <div class="col-lg-3">
+            <h4><a href="/tags">List of Tags</a></h4>
+        </div>
+    </div>
+<hr>
+{% for post in posts_by_recent %}
+<div class="mx-3">
+    <div class="row">
+        <h2>{{post.title}}</h2>
+    </div>
+
+    <div class="row">
+        <p>{{post.content}}</h4>
+    </div>
+    <div class="row">
+        <p class="font-italic">By {{post.user.full_name()}} on
+            {{post.created_at.strftime("%A, %B %d %Y, %I:%M%p")}}
+        </p>
+    </div>
+    {% if post.tags %}
+        <div class="row align-items-center">
+            <div class="">
+                <h4 class="font-weight-bold">Tags: </h5>
+            </div>
+            <div class="ml-1">
+                {% for tag in post.tags %}
+                <a href="/tags/{{tag.id}}" class="badge badge-primary">{{tag.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+</div>
+
+<hr>
+
+{% endfor %}
+
+
+{% endblock %}

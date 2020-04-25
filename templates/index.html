@@ -12,20 +12,38 @@
 
 <body>
     <section class="m-4">
-    
-    {% block Content %}
-    <h1>Users</h1>
-    <ul>
-        {% for user in users %}
-        <li><a href="/users/{{user.id}}">{{user.full_name()}}</a></li>
-        {% endfor %}
-    </ul>
 
-    <form action="/users/new">
-        <button class="btn btn-secondary">Add user</button>
-    </form>
+        {% block Content %}
+        <div class="row align-items-center">
+            <div class="col-lg-1 col-md-2">
+                <h1>Users</h1>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h4><a href="/">List of Most Recent Posts</a></h4>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h4><a href="/tags">List of Tags</a></h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-2 col-md-4">
+                <ul>
+                    {% for user in users %}
+                    <li><a href="/users/{{user.id}}">{{user.full_name()}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-1 col-md-6">
+                <form action="/users/new">
+                    <button class="btn btn-secondary">Add user</button>
+                </form>
+            </div>
+        </div>
 
-    {% endblock %}
+
+
+        {% endblock %}
 
     </section>
 

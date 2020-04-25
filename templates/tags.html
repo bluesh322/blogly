@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block Content %}
+<div class="row align-items-center">
+    <div class="col-lg-1">
+        <h1>Tags</h1>
+    </div>
+    <div class="col-lg-3">
+        <h4><a href="/users">List of Users and their Posts</a></h4>
+    </div>
+    <div class="col-lg-3 col-md-4">
+        <h4><a href="/">List of Most Recent Posts</a></h4>
+    </div>
+
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-2 col-md-4">
+        <ul>
+            {% for tag in tags %}
+            <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-lg-1 col-md-6">
+        <form action="/tags/new">
+            <button class="btn btn-primary">Add Tag</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
