@@ -4,7 +4,7 @@ from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_test_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'somemoregoodfun'
@@ -175,6 +175,10 @@ def delete_post(post_id):
     """Show add user form"""
     post = Post.query.get(post_id)
     user_id = post.user_id
+    rem = Post.query.filter(Post.id == post_id).first()
+    rem.tags.clear()
+    sess.add(rem)
+    sess.commit()
     rem = Post.query.filter(Post.id == post_id).delete()
     
     if rem == 1:
@@ -237,7 +241,7 @@ def submit_edit_tag(tag_id):
 
 @app.route('/tags/<int:tag_id>/delete')
 def delete_tag(tag_id):
-    """Show add tag form"""
+    """Delete a tag"""
     rem = Tag.query.filter(Tag.id == tag_id).first()
     rem.posts.clear()
     sess.add(rem)
